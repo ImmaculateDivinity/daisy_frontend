@@ -1,4 +1,5 @@
 import React from "react";
+import SlideOutWrapper from "./SlideOutWrapper";
 
 interface TimelineItemProps {
   icon: string | React.ReactNode; // URL or React component
@@ -53,7 +54,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
         {showConnectingLine && <div style={lineStyle}></div>}
       </div>
       {/* Content */}
-      <div className="flex-grow">{content}</div>
+      <SlideOutWrapper>
+        <div className="flex-grow">{content}</div>
+      </SlideOutWrapper>
     </div>
   );
 };
