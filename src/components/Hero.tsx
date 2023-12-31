@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onButtonClick }) => {
             receive guidance on the essentials of community college and
             transfer.
           </p>
-          <button className="btn btn-primary" onClick={onButtonClick}>
+          <button className="btn btn-wide btn-success" onClick={onButtonClick}>
             Start Learning
           </button>
         </div>

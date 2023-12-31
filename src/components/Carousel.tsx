@@ -1,20 +1,15 @@
-//acts as a bulletin board of material, it can be components
-//it can be images, etc. but make it look presentable
-//generally, this should be pulling from a database, but implement
-//that at a later time
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 
-// Define the type for props to include children components
 type CarouselProps = {
   items: ReactNode[]; // Accepts an array of ReactNode
 };
 
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isRunning, setIsRunning] = useState(true); // State to control running/stopping the carousel
   const carouselRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Scroll to the active item
   const scrollToItem = (index: number) => {
     if (carouselRef.current) {
       const { width } = carouselRef.current.getBoundingClientRect();
@@ -27,39 +22,57 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
 
   // Update active item at an interval
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % items.length);
-    }, 10000);
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        setActiveIndex((current) => (current + 1) % items.length);
+      }, 1000); // Change time as required
+    }
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [items.length]);
+  }, [items.length, isRunning]); // Re-run the effect if isRunning changes
 
   // Scroll to the active item whenever it changes
   useEffect(() => {
     scrollToItem(activeIndex);
   }, [activeIndex]);
 
+  // Toggle function for the carousel running state
+  const toggleRunning = () => {
+    setIsRunning(!isRunning);
+  };
+
   return (
-    <div
-      ref={carouselRef}
-      className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box"
-      style={{ width: "100%", overflowX: "scroll" }}
-    >
-      {items.map((item, index) => (
-        <div
-          key={index}
-          className={`carousel-item flex justify-center items-center ${
-            activeIndex === index ? "active" : ""
-          }`}
-          style={{ minWidth: "100%" }}
-        >
-          {item}
-        </div>
-      ))}
+    <div className="relative w-full" style={{ paddingBottom: "0.5vh" }}>
+      {/* Carousel container */}
+      <div
+        ref={carouselRef}
+        className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box"
+        style={{ paddingBottom: "7vh", width: "100%", overflowX: "scroll" }}
+      >
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className={`carousel-item flex justify-center items-center ${
+              activeIndex === index ? "active" : ""
+            }`}
+            style={{ minWidth: "100%" }}
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+      {/* Button to toggle running state */}
+      <button
+        onClick={toggleRunning}
+        className="btn glass absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        style={{ zIndex: 10 }}
+      >
+        {isRunning ? "Pause" : "Start"}
+      </button>
     </div>
   );
 };
