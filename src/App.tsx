@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "daisyui/dist/full.css";
 import "./App.css";
 import "./index.css";
@@ -13,10 +13,44 @@ import Carousel from "./components/Carousel.tsx";
 
 function App() {
   // Initialize an array of image URLs
+  const timelineRef = useRef<HTMLDivElement>(null); // Create a ref for the Timeline component
+
+  const scrollToTimeline = () => {
+    if (timelineRef.current) {
+      const top = timelineRef.current.offsetTop; // Get the top position of the timeline component
+      const offset = 100; // Adjust this value to whatever works for your layout
+      window.scrollTo({
+        top: top - offset, // Subtract the offset from the top position
+        behavior: "smooth",
+      });
+    }
+  };
+
   const items = [
-    <p key="1">First Item: This is a carousel. Add things later!</p>,
-    <p key="2">Second Item: Events</p>,
-    <img key="3" src="/hero_upscaled.png" alt="logo" className="rounded-box" />,
+    <Document
+      key="1"
+      title="Document Title"
+      subtitle="This is a subtitle"
+      author="John Doe"
+      date="Jan 1, 2023"
+      body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+    />,
+    <Document
+      key="2"
+      title="SECOND Document Title"
+      subtitle="This is a subtitle"
+      author="John Doe"
+      date="Jan 1, 2023"
+      body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+    />,
+    <Document
+      key="3"
+      title="THIRD Document Title"
+      subtitle="This is a subtitle"
+      author="John Doe"
+      date="Jan 1, 2023"
+      body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+    />,
     // Add more items as you wish, even other components!
   ];
   const timelineDetails = [
@@ -70,10 +104,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Hero onButtonClick={scrollToTimeline} />
       <Carousel items={items} />
-
-      <Timeline>
+      <div className="p-5"></div>
+      <Timeline ref={timelineRef}>
         {timelineDetails.map((item, index) => (
           <TimelineItem
             key={index}

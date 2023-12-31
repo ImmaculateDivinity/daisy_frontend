@@ -1,4 +1,7 @@
-const Hero: React.FC = () => {
+interface HeroProps {
+  onButtonClick: () => void; // Function to call when the button is clicked
+}
+const Hero: React.FC<HeroProps> = ({ onButtonClick }) => {
   return (
     <div
       className="hero bg-base-200"
@@ -26,7 +29,9 @@ const Hero: React.FC = () => {
             receive guidance on the essentials of community college and
             transfer.
           </p>
-          <button className="btn btn-primary">Start Learning</button>
+          <button className="btn btn-primary" onClick={onButtonClick}>
+            Start Learning
+          </button>
         </div>
       </div>
     </div>
