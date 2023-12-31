@@ -1,3 +1,8 @@
+//can be used as a base component for the component for the blogs
+//guides etc.
+//please utilize this, but remove sizes, remove animations, and just
+//make it seem like a piece of parchment paper
+
 import React from "react";
 import { useSpring, animated } from "react-spring";
 

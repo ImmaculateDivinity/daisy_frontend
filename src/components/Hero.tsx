@@ -10,6 +10,7 @@ const Hero: React.FC<HeroProps> = ({ onButtonClick }) => {
         alignItems: "flex-start",
         justifyContent: "center",
         paddingTop: "8vh",
+        paddingBottom: "4vh",
       }}
     >
       <div className="hero-content flex-col lg:flex-row">

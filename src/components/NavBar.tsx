@@ -1,6 +1,9 @@
 const Navbar: React.FC = () => {
   return (
-    <div className="navbar fixed top-0 left-0 right-0 z-50 bg-base-100">
+    <div
+      style={{ padding: "20px" }}
+      className="navbar fixed top-0 left-0 right-0 z-50 bg-base-100"
+    >
       {/* Flex container for overall navbar */}
       <div className="flex justify-center w-full">
         {/* Flex container for centered content with limited width */}
