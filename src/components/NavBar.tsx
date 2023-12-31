@@ -12,11 +12,9 @@ const Navbar: React.FC = () => {
             <div className="flex items-center space-x-2">
               {" "}
               {/* Use flex for inline elements */}
-              <img
-                src="/final_logo.png"
-                alt="Logo"
-                className="h-12 w-12"
-              />{" "}
+              <a href="/">
+                <img src="/final_logo.png" alt="Logo" className="h-12 w-12" />
+              </a>{" "}
               {/* Your image */}
               <span className="text-xl">Seedling Education</span>{" "}
               {/* Text next to the image */}
