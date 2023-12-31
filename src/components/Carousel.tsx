@@ -15,7 +15,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       const { width } = carouselRef.current.getBoundingClientRect();
       carouselRef.current.scrollTo({
         left: width * index,
-        behavior: "smooth",
+        behavior: "smooth", // Keeps the scroll behavior smooth
       });
     }
   };
@@ -25,7 +25,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
         setActiveIndex((current) => (current + 1) % items.length);
-      }, 1000); // Change time as required
+      }, 5000); // Change time as required
     }
 
     return () => {

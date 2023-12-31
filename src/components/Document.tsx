@@ -2,13 +2,13 @@
 //guides etc.
 //make it seem like a piece of parchment paper
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useSpring, animated } from "react-spring";
 interface DocumentProps {
   title: string;
-  subtitle: string;
-  author: string;
-  date: string;
+  subtitle?: string;
+  author?: string;
+  date?: string;
   body: string;
 }
 
