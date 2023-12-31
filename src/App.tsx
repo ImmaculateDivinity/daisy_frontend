@@ -8,6 +8,7 @@ import StickyNote from "./components/StickyNotes.tsx";
 import Document from "./components/Document";
 import Timeline from "./components/Timeline";
 import TimelineItem from "./components/TimelineItem";
+import Carousel from "./components/Carousel.tsx";
 
 function App() {
   const timelineDetails = [
@@ -62,6 +63,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
+      <Carousel />
       <Timeline>
         {timelineDetails.map((item, index) => (
           <TimelineItem
