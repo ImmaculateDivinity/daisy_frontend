@@ -7,6 +7,7 @@ import Footer from "./components/Footer.tsx";
 import Hero from "./components/Hero.tsx";
 import StickyNote from "./components/StickyNotes.tsx";
 import Document from "./components/Document";
+import WideDocument from "./components/WideDocument";
 import Timeline from "./components/Timeline";
 import TimelineItem from "./components/TimelineItem";
 import Carousel from "./components/Carousel.tsx";
@@ -27,18 +28,16 @@ function App() {
   };
 
   const items = [
-    <Document
+    <WideDocument
       key="1"
       title="Document Title"
-      subtitle="This is a subtitle"
       author="John Doe"
       date="Jan 1, 2023"
       body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
     />,
-    <Document
+    <WideDocument
       key="2"
       title="SECOND Document Title"
-      subtitle="This is a subtitle"
       author="John Doe"
       date="Jan 1, 2023"
       body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
