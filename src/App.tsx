@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "daisyui/dist/full.css";
 import "./App.css";
 import "./index.css";
@@ -11,6 +12,13 @@ import TimelineItem from "./components/TimelineItem";
 import Carousel from "./components/Carousel.tsx";
 
 function App() {
+  // Initialize an array of image URLs
+  const items = [
+    <p key="1">First Item: This is a carousel. Add things later!</p>,
+    <p key="2">Second Item: Events</p>,
+    <img key="3" src="/hero_upscaled.png" alt="logo" className="rounded-box" />,
+    // Add more items as you wish, even other components!
+  ];
   const timelineDetails = [
     {
       icon: "/team_image.png", // Replace with actual icon paths or import statements
@@ -63,7 +71,8 @@ function App() {
     <>
       <Navbar />
       <Hero />
-      <Carousel />
+      <Carousel items={items} />
+
       <Timeline>
         {timelineDetails.map((item, index) => (
           <TimelineItem
